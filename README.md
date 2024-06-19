@@ -21,41 +21,7 @@ This project includes a Windows Desktop App built with Visual Basic and a backen
 - **Keyboard Shortcuts**
   - View Submissions: Ctrl + V
   - Create New Submission: Ctrl + N
-
-### Forms
-
-1. **Main Form (Form1.vb)**
-    ```vb
-    Public Class Form1
-        Private Sub btnViewSubmissions_Click(sender As Object, e As EventArgs) Handles btnViewSubmissions.Click
-            Dim viewForm As New ViewSubmissionsForm()
-            viewForm.Show()
-        End Sub
-
-        Private Sub btnCreateNewSubmission_Click(sender As Object, e As EventArgs) Handles btnCreateSubmission.Click
-            Dim createForm As New CreateSubmissionForm()
-            createForm.Show()
-        End Sub
-
-        Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles MyBase.KeyDown
-            If e.Control AndAlso e.KeyCode = Keys.V Then
-                btnViewSubmissions.PerformClick()
-            ElseIf e.Control AndAlso e.KeyCode = Keys.N Then
-                btnCreateSubmission.PerformClick()
-            End If
-        End Sub
-    End Class
-    ```
-
-2. **View Submissions Form (ViewSubmissionsForm.vb)**
-    ```vb
-    ' ViewSubmissionsForm code here
-    ```
-
-3. **Create Submission Form (CreateSubmissionForm.vb)**
-    ```vb
-    ' CreateSubmissionForm code here
-    ```
+`
 
 ## Backend
 
@@ -86,12 +52,7 @@ This project includes a Windows Desktop App built with Visual Basic and a backen
     npm start
     ```
 
-### Code
 
-1. **Server Code (server.ts)**
-    ```typescript
-    ' Server code here
-    ```
 
 ### Database
 
