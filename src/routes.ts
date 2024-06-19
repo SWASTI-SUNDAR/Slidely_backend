@@ -62,4 +62,51 @@ router.get("/read", (req: Request, res: Response) => {
   }
 });
 
+// Endpoint to delete a submission by index
+router.delete("/delete", (req: Request, res: Response) => {
+  const index = parseInt(req.query.index as string, 10);
+  let submissions = readDatabase();
+  if (index >= 0 && index < submissions.length) {
+    submissions = submissions.filter((_, i) => i !== index);
+    writeDatabase(submissions);
+    res.json({ success: true });
+  } else {
+    res.status(404).json({ error: "Submission not found" });
+  }
+});
+
+// Endpoint to update a submission by index
+router.put("/update", (req: Request, res: Response) => {
+  const index = parseInt(req.query.index as string, 10);
+  const { name, email, phone, github_link, stopwatch_time } = req.body;
+  let submissions = readDatabase();
+  if (index >= 0 && index < submissions.length) {
+    submissions[index] = {
+      name,
+      email,
+      phone,
+      github_link,
+      stopwatch_time,
+    };
+    writeDatabase(submissions);
+    res.json({ success: true });
+  } else {
+    res.status(404).json({ error: "Submission not found" });
+  }
+});
+
+// Endpoint to search submissions by email
+router.get("/search", (req: Request, res: Response) => {
+  const email = req.query.email as string;
+  const submissions = readDatabase();
+  const results = submissions.filter(
+    (submission) => submission.email === email
+  );
+  res.json(results);
+});
+
+router.get("/read-all", (req, res) => {
+  const submissions = readDatabase();
+  res.json(submissions);
+});
 export default router;
